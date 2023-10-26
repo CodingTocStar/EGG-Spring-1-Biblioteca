@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="https://www.thymeleaf.org/">
+    <head>
+        <title>Biblioteca EGG - modificar autor</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Modificar autor</h1>
+
+        <header>
+            <div class="container">
+                <h2>Carga el autor aca</h2>
+            </div>
+        </header>
+
+        <div class="container">
+            <form th:action="@{/autor/modificar/__${autor.id}__}" method="POST"> <!--VARIABLE DE PREPROCESAMIENTO (__${autor.id}__) || primero evalua esta expresion antes de la expresion completa-->
+
+                <input hidden th:value="${id}" name="id"> <!--asi esta oculto y no se puede modificar || necesito que este porque lo va a esperar el programa-->
+
+                <div class="form-group">
+                    <input th:value="${autor.nombre}" type="text" class="form-group" name="nombre" placeholder="Nombre del autor">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Actualizar</button>
+            </form>
+        </div>
+        
+        <!--        SE VIENE EL THYMELEAF      -->
+        <div th:if="${error != null}">
+            <h5>ERROR</h5>
+            <p th:text="${error}"></p>
+        </div>
+
+        <div th:if="${exito != null}">
+            <h5>EXITO</h5>
+            <p th:text="${exito}"></p>
+        </div>
+        <!--=========================================================-->
+
+    </body>
+</html>

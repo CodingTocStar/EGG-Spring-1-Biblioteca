@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="https://www.thymeleaf.org/">
+    <head>
+        <title>Egg biblioteca - lista autores</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Lista de autores</h1>
+
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id del autor</th>
+                        <th>nombre del autor</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <!------------------------------------------->
+                <tbody th:each="autor : ${autores}">
+                    <tr>
+                        <th th:text="${autor.id}"></th>
+                        <td th:text="${autor.nombre}"></td>
+                        <td>
+                            <a th:href="@{/autor/modificar/__${autor.id}__}"><i>Modificar</i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <!--        SE VIENE EL THYMELEAF      -->
+        <div th:if="${error != null}">
+            <h5>ERROR</h5>
+            <p th:text="${error}"></p>
+        </div>
+
+        <div th:if="${exito != null}">
+            <h5>EXITO</h5>
+            <p th:text="${exito}"></p>
+        </div>
+        <!--=========================================================-->
+    </body>
+</html>
